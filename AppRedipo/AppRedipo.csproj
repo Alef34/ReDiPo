@@ -52,6 +52,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmJedla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmJedla.Designer.cs">
+      <DependentUpon>frmJedla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReceptura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceptura.Designer.cs">
+      <DependentUpon>frmReceptura.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSuroviny.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +74,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmJedla.resx">
+      <DependentUpon>frmJedla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReceptura.resx">
+      <DependentUpon>frmReceptura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSuroviny.resx">
       <DependentUpon>frmSuroviny.cs</DependentUpon>

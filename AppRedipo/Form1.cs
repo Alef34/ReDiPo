@@ -52,13 +52,12 @@ namespace AppRedipo
             if (DS.Tables["Jedla"] != null) DS.Tables["Jedla"].Clear();
             DA.Fill(DS, "Jedla");
 
-            dataGridView1.DataSource = DS;
-            dataGridView1.DataMember = "Jedla";
+            dataGridView1.DataSource = DS.Tables["Jedla"];
         }
 
         private void TxtFilterS_TextChanged(object sender, EventArgs e)
         {
-            DataView dv = new DataView(DS.Tables["Jedla"]);
+            DataView dv = DS.Tables["Jedla"].DefaultView;
             dv.RowFilter = "Surovina like '%" + txtFilterS.Text + "%' ";
         }
 
@@ -90,6 +89,15 @@ namespace AppRedipo
 
         private void TxtFilterS_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void BtnJedla_Click(object sender, EventArgs e)
+        {
+            frmJedla frmJed = new frmJedla();
+            frmJed.StartPosition = FormStartPosition.CenterScreen;
+            frmJed.ShowDialog();
+            frmJed.Dispose();
 
         }
     }

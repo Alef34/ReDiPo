@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace AppRedipo
 {
-    public partial class frmSuroviny : Form
+    public partial class frmJedla : Form
     {
 
         DataSet DS = new DataSet();
@@ -21,7 +21,7 @@ namespace AppRedipo
         string retSql = "";
 
 
-        public frmSuroviny()
+        public frmJedla()
         {
             InitializeComponent();
         }
@@ -36,40 +36,23 @@ namespace AppRedipo
 
         private void NaplnDb()
         {
-            retSql = "Select * from Suroviny";
+            retSql = "Select * from Jedla";
             cmd = new SqlCommand(retSql, conn);
             cmd.CommandType = CommandType.Text;
             DA.SelectCommand = cmd;
-            if (DS.Tables["Suroviny"] != null) DS.Tables["Suroviny"].Clear();
-            DA.Fill(DS, "Suroviny");
+            if (DS.Tables["Jedla"] != null) DS.Tables["Jedla"].Clear();
+            DA.Fill(DS, "Jedla");
 
-            dataGridView1.DataSource = DS.Tables["Suroviny"];
+            dataGridView1.DataSource = DS.Tables["Jedla"];
         }
 
-        private void ToolStripButton2_Click(object sender, EventArgs e)
-        {
-            retSql = "Insert Into Suroviny (Surovina) Values ('Nova surovina')";
-            cmd = new SqlCommand(retSql, conn);
-            try
-            {
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
-                NaplnDb();
-            }
-            catch (Exception ex)
-            {
-                if (cmd.Connection.State != ConnectionState.Closed) cmd.Connection.Close();
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+       
         private void ToolStripButton3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                int ids = (int)dataGridView1.SelectedRows[0].Cells["IdS"].Value;
-                retSql = "Update Suroviny Set Surovina = '" + txtText.Text + "' Where IdS=" + ids;
+                int idj = (int)dataGridView1.SelectedRows[0].Cells["IdJ"].Value;
+                retSql = "Update Jedla Set Jedlo = '" + txtText.Text + "' , Kategoria='" + txtKategoria.Text + "'  Where IdJ=" + idj;
                 cmd = new SqlCommand(retSql, conn);
                 try
                 {
@@ -86,7 +69,7 @@ namespace AppRedipo
             }
             else
             {
-                retSql = "Insert Into Suroviny (Surovina)Values('" + txtSurovina.Text + "')";
+                retSql = "Insert Into Jedla (Jedlo,Kategoria)Values('" + txtJedla.Text + "','" + txtKategoria.Text + "')";
                 using (var connection = new SqlConnection(conn.ConnectionString))
                 {
                     cmd.CommandText = retSql;
@@ -102,7 +85,10 @@ namespace AppRedipo
         private void DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
-                txtText.Text = (string)dataGridView1.SelectedRows[0].Cells["Surovina"].Value;
+            {
+                txtText.Text = (string)dataGridView1.SelectedRows[0].Cells["Jedlo"].Value;
+                txtKategoria.Text = (string)dataGridView1.SelectedRows[0].Cells["Kategoria"].Value;
+            }
         }
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
@@ -110,12 +96,13 @@ namespace AppRedipo
             this.Close();
         }
 
-        private void TxtSurovina_TextChanged(object sender, EventArgs e)
+        private void TxtJedla_TextChanged(object sender, EventArgs e)
         {
-            DataView dvv = DS.Tables["Suroviny"].DefaultView;
-            dvv.RowFilter = "Surovina like '%" + txtSurovina.Text + "%'";
-            btnVymaz.Enabled = dvv.Count > 0;
+            DataView dvv = DS.Tables["Jedla"].DefaultView;
+            dvv.RowFilter = "Jedlo like '%" + txtJedla.Text + "%' or Kategoria like '%" + txtJedla.Text + "%'";
+            btnVymaz.Enabled = dvv.Count> 0;
             btnPrepis.Text = dvv.Count > 0 ? "Prepis" : "Pridaj";
+            btnReceptura.Enabled = dvv.Count> 0;
         }
 
         private void ToolStripButton4_Click(object sender, EventArgs e)
@@ -124,8 +111,8 @@ namespace AppRedipo
             if (MessageBox.Show("Naozaj chcete vymazat?", "Pozor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 if (dataGridView1.SelectedRows.Count != 0)
                 {
-                    int ids = (int)dataGridView1.SelectedRows[0].Cells["IdS"].Value;
-                    retSql = "Delete From Suroviny Where IdS=" + ids;
+                    int idj = (int)dataGridView1.SelectedRows[0].Cells["IdJ"].Value;
+                    retSql = "Delete From Jedla Where IdJ=" + idj;
                     cmd = new SqlCommand(retSql, conn);
                     try
                     {
@@ -140,12 +127,34 @@ namespace AppRedipo
                         MessageBox.Show(ex.Message);
                     }
                 }
-                
+
         }
 
-        private void TxtSurovina_Click(object sender, EventArgs e)
+        private void FrmJedla_Load(object sender, EventArgs e)
         {
+            NaplnDb();
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
 
+        private void BtnReceptura_Click(object sender, EventArgs e)
+        {
+            OtvorRecepturu();
+        }
+
+        private void OtvorRecepturu()
+        {
+            int idj = (int)dataGridView1.SelectedRows[0].Cells["IdJ"].Value;
+            frmReceptura frmRep = new frmReceptura(idj);
+            frmRep.StartPosition = FormStartPosition.CenterScreen;
+            frmRep.ShowDialog();
+            frmRep.Dispose();
+        }
+
+        private void DataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            OtvorRecepturu();
         }
     }
 }
