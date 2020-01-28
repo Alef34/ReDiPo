@@ -69,6 +69,22 @@ namespace AppRedipo
             frmI.StartPosition = FormStartPosition.CenterScreen;
             frmI.ShowDialog();
             frmI.Dispose();
+            NaplnDb();
+        }
+
+        private void DgvIngrediencie_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgvIngrediencie.SelectedRows.Count > 0)
+            {
+                DataGridViewRow riadok = dgvIngrediencie.SelectedRows[0];
+
+                frmIngrediencia frmI = new frmIngrediencia(idJedlo, (int)riadok.Cells["IdS"].Value);
+                frmI.StartPosition = FormStartPosition.CenterScreen;
+                frmI.ShowDialog();
+                frmI.Dispose();
+                NaplnDb();
+            }
+            
         }
     }
 }

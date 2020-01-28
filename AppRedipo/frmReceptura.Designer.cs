@@ -33,13 +33,13 @@
             this.btnZatvor = new System.Windows.Forms.ToolStripButton();
             this.lblId = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgvIngrediencie = new System.Windows.Forms.DataGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.dgvIngrediencie = new System.Windows.Forms.DataGridView();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngrediencie)).BeginInit();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -81,6 +81,21 @@
             this.panel1.Size = new System.Drawing.Size(800, 411);
             this.panel1.TabIndex = 1;
             // 
+            // dgvIngrediencie
+            // 
+            this.dgvIngrediencie.AllowUserToAddRows = false;
+            this.dgvIngrediencie.AllowUserToDeleteRows = false;
+            this.dgvIngrediencie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIngrediencie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvIngrediencie.Location = new System.Drawing.Point(0, 39);
+            this.dgvIngrediencie.MultiSelect = false;
+            this.dgvIngrediencie.Name = "dgvIngrediencie";
+            this.dgvIngrediencie.ReadOnly = true;
+            this.dgvIngrediencie.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvIngrediencie.Size = new System.Drawing.Size(800, 372);
+            this.dgvIngrediencie.TabIndex = 1;
+            this.dgvIngrediencie.DoubleClick += new System.EventHandler(this.DgvIngrediencie_DoubleClick);
+            // 
             // toolStrip2
             // 
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
@@ -102,18 +117,6 @@
             this.toolStripButton1.Text = "toolStripButton1";
             this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
-            // dgvIngrediencie
-            // 
-            this.dgvIngrediencie.AllowUserToAddRows = false;
-            this.dgvIngrediencie.AllowUserToDeleteRows = false;
-            this.dgvIngrediencie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIngrediencie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvIngrediencie.Location = new System.Drawing.Point(0, 39);
-            this.dgvIngrediencie.Name = "dgvIngrediencie";
-            this.dgvIngrediencie.ReadOnly = true;
-            this.dgvIngrediencie.Size = new System.Drawing.Size(800, 372);
-            this.dgvIngrediencie.TabIndex = 1;
-            // 
             // frmReceptura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,9 +131,9 @@
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIngrediencie)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIngrediencie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
