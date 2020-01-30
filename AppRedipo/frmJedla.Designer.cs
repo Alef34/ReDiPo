@@ -38,8 +38,11 @@
             this.txtText = new System.Windows.Forms.ToolStripTextBox();
             this.btnPrepis = new System.Windows.Forms.ToolStripButton();
             this.btnVymaz = new System.Windows.Forms.ToolStripButton();
-            this.txtKategoria = new System.Windows.Forms.ToolStripTextBox();
             this.btnReceptura = new System.Windows.Forms.ToolStripButton();
+            this.cboKategorie = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +58,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(922, 411);
+            this.dataGridView1.Size = new System.Drawing.Size(1195, 411);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.DataGridView1_DoubleClick);
@@ -69,13 +72,16 @@
             this.toolStripLabel1,
             this.txtJedla,
             this.txtText,
-            this.txtKategoria,
+            this.toolStripSeparator3,
+            this.cboKategorie,
+            this.toolStripButton1,
+            this.toolStripSeparator2,
             this.btnPrepis,
             this.btnVymaz,
             this.btnReceptura});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(922, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1195, 39);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -133,13 +139,6 @@
             this.btnVymaz.Text = "Vymaz";
             this.btnVymaz.Click += new System.EventHandler(this.ToolStripButton4_Click);
             // 
-            // txtKategoria
-            // 
-            this.txtKategoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtKategoria.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtKategoria.Name = "txtKategoria";
-            this.txtKategoria.Size = new System.Drawing.Size(100, 39);
-            // 
             // btnReceptura
             // 
             this.btnReceptura.Image = ((System.Drawing.Image)(resources.GetObject("btnReceptura.Image")));
@@ -149,11 +148,40 @@
             this.btnReceptura.Text = "Receptura";
             this.btnReceptura.Click += new System.EventHandler(this.BtnReceptura_Click);
             // 
+            // cboKategorie
+            // 
+            this.cboKategorie.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboKategorie.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboKategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboKategorie.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cboKategorie.Name = "cboKategorie";
+            this.cboKategorie.Size = new System.Drawing.Size(121, 39);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(36, 36);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click_1);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
             // frmJedla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 450);
+            this.ClientSize = new System.Drawing.Size(1195, 450);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmJedla";
@@ -178,7 +206,10 @@
         private System.Windows.Forms.ToolStripTextBox txtText;
         private System.Windows.Forms.ToolStripButton btnPrepis;
         private System.Windows.Forms.ToolStripButton btnVymaz;
-        private System.Windows.Forms.ToolStripTextBox txtKategoria;
         private System.Windows.Forms.ToolStripButton btnReceptura;
+        private System.Windows.Forms.ToolStripComboBox cboKategorie;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

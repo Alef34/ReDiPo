@@ -33,10 +33,11 @@ namespace AppRedipo
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-
         private void NaplnDb()
         {
-            retSql = "Select * from Jedla";
+            retSql = @"Select j.IdJ, j.Jedlo, k.IdK, k.Kategoria from  Jedla j
+                        Join Kategorie k
+                        on k.IdK = j.IdKFK";
             cmd = new SqlCommand(retSql, conn);
             cmd.CommandType = CommandType.Text;
             DA.SelectCommand = cmd;
@@ -44,15 +45,40 @@ namespace AppRedipo
             DA.Fill(DS, "Jedla");
 
             dataGridView1.DataSource = DS.Tables["Jedla"];
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[2].Visible = false;
+
+
+            NaplnDbKategorie();
+            
         }
 
-       
+        private void NaplnDbKategorie()
+        {
+            retSql = "Select * from Kategorie";
+            cmd.CommandText = retSql;
+            DA.SelectCommand = cmd;
+            if (DS.Tables["Kategorie"] != null) DS.Tables["Kategorie"].Clear();
+            DA.Fill(DS, "Kategorie");
+
+
+            cboKategorie.ComboBox.DataSource = DS.Tables["Kategorie"];
+            cboKategorie.ComboBox.DisplayMember = "Kategoria";
+            cboKategorie.ComboBox.ValueMember = "IdK";
+
+
+
+            if (dataGridView1.SelectedRows.Count > 0)
+                cboKategorie.ComboBox.SelectedValue = dataGridView1.SelectedRows[0].Cells["IdK"].Value;
+
+        }
+
         private void ToolStripButton3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count != 0)
             {
                 int idj = (int)dataGridView1.SelectedRows[0].Cells["IdJ"].Value;
-                retSql = "Update Jedla Set Jedlo = '" + txtText.Text + "' , Kategoria='" + txtKategoria.Text + "'  Where IdJ=" + idj;
+                retSql = "Update Jedla Set Jedlo = '" + txtText.Text + "' , IdKFK='" + cboKategorie.ComboBox.SelectedValue + "'  Where IdJ=" + idj;
                 cmd = new SqlCommand(retSql, conn);
                 try
                 {
@@ -69,7 +95,7 @@ namespace AppRedipo
             }
             else
             {
-                retSql = "Insert Into Jedla (Jedlo,Kategoria)Values('" + txtJedla.Text + "','" + txtKategoria.Text + "')";
+                retSql = "Insert Into Jedla (Jedlo,IdKFK)Values('" + txtJedla.Text + "','" + cboKategorie.ComboBox.SelectedValue + "')";
                 using (var connection = new SqlConnection(conn.ConnectionString))
                 {
                     cmd.CommandText = retSql;
@@ -87,7 +113,8 @@ namespace AppRedipo
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 txtText.Text = (string)dataGridView1.SelectedRows[0].Cells["Jedlo"].Value;
-                txtKategoria.Text = (string)dataGridView1.SelectedRows[0].Cells["Kategoria"].Value;
+                // txtKategoria.Text = (string)dataGridView1.SelectedRows[0].Cells["Kategoria"].Value;
+                cboKategorie.ComboBox.SelectedValue = dataGridView1.SelectedRows[0].Cells["IdK"].Value;
             }
         }
 
@@ -100,9 +127,9 @@ namespace AppRedipo
         {
             DataView dvv = DS.Tables["Jedla"].DefaultView;
             dvv.RowFilter = "Jedlo like '%" + txtJedla.Text + "%' or Kategoria like '%" + txtJedla.Text + "%'";
-            btnVymaz.Enabled = dvv.Count> 0;
+            btnVymaz.Enabled = dvv.Count > 0;
             btnPrepis.Text = dvv.Count > 0 ? "Prepis" : "Pridaj";
-            btnReceptura.Enabled = dvv.Count> 0;
+            btnReceptura.Enabled = dvv.Count > 0;
         }
 
         private void ToolStripButton4_Click(object sender, EventArgs e)
@@ -156,5 +183,17 @@ namespace AppRedipo
         {
             OtvorRecepturu();
         }
+
+        private void ToolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            int idk =(int)cboKategorie.ComboBox.SelectedValue;
+            frmKategorie frmKat = new frmKategorie();
+            frmKat.StartPosition = FormStartPosition.CenterScreen;
+            frmKat.ShowDialog();
+            frmKat.Dispose();
+            NaplnDbKategorie();
+        }
+
+       
     }
 }

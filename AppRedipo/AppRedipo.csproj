@@ -64,6 +64,12 @@
     <Compile Include="frmJedla.Designer.cs">
       <DependentUpon>frmJedla.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKategorie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKategorie.Designer.cs">
+      <DependentUpon>frmKategorie.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReceptura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmJedla.resx">
       <DependentUpon>frmJedla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKategorie.resx">
+      <DependentUpon>frmKategorie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReceptura.resx">
       <DependentUpon>frmReceptura.cs</DependentUpon>
