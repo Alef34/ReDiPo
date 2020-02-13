@@ -32,21 +32,28 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboSuroviny = new System.Windows.Forms.ComboBox();
-            this.txtMnozstvo = new System.Windows.Forms.TextBox();
             this.btnPridaj = new System.Windows.Forms.Button();
+            this.txtMnozstvo = new System.Windows.Forms.TextBox();
+            this.cboSuroviny = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.lstSuroviny = new System.Windows.Forms.ListView();
             this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Surovina = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Mnozstvo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgvJedla = new System.Windows.Forms.DataGridView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -81,6 +88,25 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // btnPridaj
+            // 
+            this.btnPridaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnPridaj.Location = new System.Drawing.Point(388, 19);
+            this.btnPridaj.Name = "btnPridaj";
+            this.btnPridaj.Size = new System.Drawing.Size(75, 28);
+            this.btnPridaj.TabIndex = 2;
+            this.btnPridaj.Text = "Pridaj";
+            this.btnPridaj.UseVisualStyleBackColor = true;
+            this.btnPridaj.Click += new System.EventHandler(this.BtnPridaj_Click);
+            // 
+            // txtMnozstvo
+            // 
+            this.txtMnozstvo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtMnozstvo.Location = new System.Drawing.Point(282, 20);
+            this.txtMnozstvo.Name = "txtMnozstvo";
+            this.txtMnozstvo.Size = new System.Drawing.Size(100, 26);
+            this.txtMnozstvo.TabIndex = 1;
+            // 
             // cboSuroviny
             // 
             this.cboSuroviny.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -93,25 +119,6 @@
             this.cboSuroviny.Size = new System.Drawing.Size(269, 28);
             this.cboSuroviny.TabIndex = 0;
             // 
-            // txtMnozstvo
-            // 
-            this.txtMnozstvo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtMnozstvo.Location = new System.Drawing.Point(282, 20);
-            this.txtMnozstvo.Name = "txtMnozstvo";
-            this.txtMnozstvo.Size = new System.Drawing.Size(100, 26);
-            this.txtMnozstvo.TabIndex = 1;
-            // 
-            // btnPridaj
-            // 
-            this.btnPridaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnPridaj.Location = new System.Drawing.Point(388, 19);
-            this.btnPridaj.Name = "btnPridaj";
-            this.btnPridaj.Size = new System.Drawing.Size(75, 28);
-            this.btnPridaj.TabIndex = 2;
-            this.btnPridaj.Text = "Pridaj";
-            this.btnPridaj.UseVisualStyleBackColor = true;
-            this.btnPridaj.Click += new System.EventHandler(this.BtnPridaj_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lstSuroviny);
@@ -121,26 +128,6 @@
             this.groupBox2.Size = new System.Drawing.Size(475, 328);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 16);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(469, 39);
-            this.toolStrip2.TabIndex = 0;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(36, 36);
-            this.toolStripButton2.Text = "toolStripButton2";
             // 
             // lstSuroviny
             // 
@@ -173,22 +160,64 @@
             // 
             this.Mnozstvo.Text = "Množstvo";
             // 
-            // button1
+            // toolStrip2
             // 
-            this.button1.Location = new System.Drawing.Point(577, 119);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 99);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton2});
+            this.toolStrip2.Location = new System.Drawing.Point(3, 16);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(469, 39);
+            this.toolStrip2.TabIndex = 0;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(36, 36);
+            this.toolStripButton2.Text = "toolStripButton2";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.splitContainer1);
+            this.groupBox3.Location = new System.Drawing.Point(493, 42);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(524, 393);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            // 
+            // dgvJedla
+            // 
+            this.dgvJedla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJedla.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvJedla.Location = new System.Drawing.Point(0, 0);
+            this.dgvJedla.Name = "dgvJedla";
+            this.dgvJedla.Size = new System.Drawing.Size(518, 169);
+            this.dgvJedla.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 16);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvJedla);
+            this.splitContainer1.Size = new System.Drawing.Size(518, 374);
+            this.splitContainer1.SplitterDistance = 169;
+            this.splitContainer1.TabIndex = 1;
             // 
             // frmChladnicka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
@@ -203,6 +232,11 @@
             this.groupBox2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,6 +257,8 @@
         private System.Windows.Forms.ColumnHeader Id;
         private System.Windows.Forms.ColumnHeader Surovina;
         private System.Windows.Forms.ColumnHeader Mnozstvo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView dgvJedla;
     }
 }

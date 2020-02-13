@@ -19,7 +19,8 @@ namespace AppRedipo
         SqlConnection conn = new SqlConnection("Data Source=USER-02-C2\\SQLEXPRESS;Integrated Security=False;Initial Catalog=Redipo; User ID=sa;Password=;Pooling=False");
         SqlCommand cmd;
         string retSql = "";
-        DataView dv;
+        DataView dvSuroviny;
+        DataView dvJedla;
         string idecka = "";
 
         public frmChladnicka()
@@ -34,15 +35,27 @@ namespace AppRedipo
             DA = new SqlDataAdapter(retSql, conn);
             DA.Fill(DS, "Suroviny");
 
-            dv = new DataView(DS.Tables["Suroviny"]);
+            dvSuroviny = new DataView(DS.Tables["Suroviny"]);
             NastavCombo();
+
+            retSql = "Select Distinct Jedlo, s.IdS From Jedla j " +
+                "Join Receptury r on j.IdJ=r.IdJFK " +
+                "Join Suroviny s on s.IdS=r.IdSFK ";
+           
+            DA = new SqlDataAdapter(retSql, conn);
+            DA.Fill(DS, "Jedla");
+
+            dvJedla = new DataView(DS.Tables["Jedla"]);
+            dvJedla.RowFilter = "IdS in (0)";
+            dgvJedla.DataSource = dvJedla.ToTable(true, "Jedlo");
+
         }
 
         private void NastavCombo()
         {
             
-            dv.RowFilter = "IdS not in (0"+ idecka+")";
-            cboSuroviny.DataSource = dv;
+            dvSuroviny.RowFilter = "IdS not in (0"+ idecka+")";
+            cboSuroviny.DataSource = dvSuroviny;
             cboSuroviny.DisplayMember = "Surovina";
             cboSuroviny.ValueMember = "IdS";
         }
@@ -61,7 +74,10 @@ namespace AppRedipo
             lstSuroviny.Items.Add(lvi);
             idecka += ","+lvi.Text;
             NastavCombo();
-            btnPridaj.Enabled = dv.Count > 0;
+            btnPridaj.Enabled = dvSuroviny.Count > 0;
+                                   
+            dvJedla.RowFilter = "IdS in (0" + idecka + ") ";
+            dgvJedla.DataSource = dvJedla.ToTable(true, "Jedlo");
         }
 
         private void FrmChladnicka_Load(object sender, EventArgs e)
@@ -69,7 +85,7 @@ namespace AppRedipo
             lstSuroviny.Columns[0].Width = 20;
             lstSuroviny.Columns[1].Width = 200;
             lstSuroviny.Columns[2].Width = 200;
-
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)
