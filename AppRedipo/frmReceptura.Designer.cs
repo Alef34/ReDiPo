@@ -35,7 +35,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvIngrediencie = new System.Windows.Forms.DataGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.btnPridaj = new System.Windows.Forms.ToolStripButton();
+            this.btnVymaz = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngrediencie)).BeginInit();
@@ -56,12 +57,11 @@
             // 
             // btnZatvor
             // 
-            this.btnZatvor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnZatvor.Image = ((System.Drawing.Image)(resources.GetObject("btnZatvor.Image")));
             this.btnZatvor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZatvor.Name = "btnZatvor";
-            this.btnZatvor.Size = new System.Drawing.Size(36, 36);
-            this.btnZatvor.Text = "toolStripButton1";
+            this.btnZatvor.Size = new System.Drawing.Size(77, 36);
+            this.btnZatvor.Text = "Zatvor";
             this.btnZatvor.Click += new System.EventHandler(this.BtnZatvor_Click);
             // 
             // lblId
@@ -94,38 +94,51 @@
             this.dgvIngrediencie.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIngrediencie.Size = new System.Drawing.Size(800, 372);
             this.dgvIngrediencie.TabIndex = 1;
+            this.dgvIngrediencie.SelectionChanged += new System.EventHandler(this.DgvIngrediencie_SelectionChanged);
             this.dgvIngrediencie.DoubleClick += new System.EventHandler(this.DgvIngrediencie_DoubleClick);
             // 
             // toolStrip2
             // 
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.btnPridaj,
+            this.btnVymaz});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(800, 39);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // toolStripButton1
+            // btnPridaj
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(36, 36);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            this.btnPridaj.Image = ((System.Drawing.Image)(resources.GetObject("btnPridaj.Image")));
+            this.btnPridaj.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPridaj.Name = "btnPridaj";
+            this.btnPridaj.Size = new System.Drawing.Size(73, 36);
+            this.btnPridaj.Text = "Pridaj";
+            this.btnPridaj.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            // 
+            // btnVymaz
+            // 
+            this.btnVymaz.Enabled = false;
+            this.btnVymaz.Image = ((System.Drawing.Image)(resources.GetObject("btnVymaz.Image")));
+            this.btnVymaz.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVymaz.Name = "btnVymaz";
+            this.btnVymaz.Size = new System.Drawing.Size(78, 36);
+            this.btnVymaz.Text = "Vymaž";
+            this.btnVymaz.Click += new System.EventHandler(this.BtnVymaz_Click);
             // 
             // frmReceptura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmReceptura";
             this.Text = "frmReceptura";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmReceptura_FormClosing);
             this.Load += new System.EventHandler(this.FrmReceptura_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -147,6 +160,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvIngrediencie;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnPridaj;
+        private System.Windows.Forms.ToolStripButton btnVymaz;
     }
 }

@@ -173,7 +173,10 @@ namespace AppRedipo
         private void OtvorRecepturu()
         {
             int idj = (int)dataGridView1.SelectedRows[0].Cells["IdJ"].Value;
-            frmReceptura frmRep = new frmReceptura(idj);
+            string nazov = (string)dataGridView1.SelectedRows[0].Cells["Jedlo"].Value;
+
+            frmReceptura frmRep = new frmReceptura(idj, nazov);
+
             frmRep.StartPosition = FormStartPosition.CenterScreen;
             frmRep.ShowDialog();
             frmRep.Dispose();

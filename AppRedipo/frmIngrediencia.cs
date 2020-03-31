@@ -18,6 +18,7 @@ namespace AppRedipo
         private int idR = -1;
         private int idS = -1;
 
+
         DataSet DS = new DataSet();
         SqlDataAdapter DA = new SqlDataAdapter();
         SqlConnection conn = new SqlConnection("Data Source=USER-02-C2\\SQLEXPRESS;Integrated Security=False;Initial Catalog=Redipo; User ID=sa;Password=;Pooling=False");
@@ -38,7 +39,7 @@ namespace AppRedipo
 
         private void NaplnDb()
         {
-            if (idSuroviny != -1)
+            if (idSuroviny == -1)
                 retSql = "Select * From Suroviny Order By Surovina";
             else
                 retSql = "Select * From Suroviny Where IdS="+ idSuroviny;

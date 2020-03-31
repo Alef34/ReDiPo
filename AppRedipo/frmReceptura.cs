@@ -13,20 +13,24 @@ namespace AppRedipo
 {
     public partial class frmReceptura : Form
     {
-
-
         private int idJedlo;
+        private string nazovJedla;
+        private bool dovolEditovat;
+
         DataSet DS = new DataSet();
         SqlDataAdapter DA = new SqlDataAdapter();
         SqlConnection conn = new SqlConnection("Data Source=USER-02-C2\\SQLEXPRESS;Integrated Security=False;Initial Catalog=Redipo; User ID=sa;Password=;Pooling=False");
         SqlCommand cmd;
+
         string retSql = "";
 
 
-        public frmReceptura(int idjedlo)
+        public frmReceptura(int _idjedlo, string _nazovjedla, bool _DovolEditovat=true)
         {
             InitializeComponent();
-            idJedlo = idjedlo;
+            idJedlo = _idjedlo;
+            dovolEditovat = _DovolEditovat;
+            nazovJedla = _nazovjedla;
 
         }
 
@@ -37,8 +41,19 @@ namespace AppRedipo
 
         private void FrmReceptura_Load(object sender, EventArgs e)
         {
-            lblId.Text = idJedlo.ToString();
+            lblId.Text = idJedlo.ToString()+" - "+ nazovJedla;
+            this.Font = new Font("Courier New", 8);
+            lblId.Font = new Font(this.Font.FontFamily, 20.0f,FontStyle.Bold | FontStyle.Italic);
+            this.Text= nazovJedla;
             NaplnDb();
+            btnPridaj.Visible = dovolEditovat;
+
+            this.Location = new Point(10, 10);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Maximized;
+
+            this.ControlBox = true;
+            
         }
 
         private void NaplnDb()
@@ -60,6 +75,7 @@ namespace AppRedipo
             dgvIngrediencie.Columns["IdJFK"].Visible = false;
             dgvIngrediencie.Columns["IdS"].Visible = false;
 
+            
 
         }
 
@@ -74,7 +90,7 @@ namespace AppRedipo
 
         private void DgvIngrediencie_DoubleClick(object sender, EventArgs e)
         {
-            if (dgvIngrediencie.SelectedRows.Count > 0)
+            if (dovolEditovat && dgvIngrediencie.SelectedRows.Count > 0  )
             {
                 DataGridViewRow riadok = dgvIngrediencie.SelectedRows[0];
 
@@ -85,6 +101,56 @@ namespace AppRedipo
                 NaplnDb();
             }
             
+        }
+
+        private void DgvIngrediencie_SelectionChanged(object sender, EventArgs e)
+        {
+            btnVymaz.Enabled = (dgvIngrediencie.SelectedRows.Count > 0);
+        }
+
+        private void BtnVymaz_Click(object sender, EventArgs e)
+        {
+            int idR =(int)dgvIngrediencie.SelectedRows[0].Cells["IdR"].Value;
+            retSql = "Delete From Receptury Where IdR= @IdR ";
+            cmd.CommandText = retSql;
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@IdR";
+            param.SqlDbType = SqlDbType.Int;
+            param.Value = idR;
+
+            cmd.Parameters.Add(param);
+            cmd.Connection = conn;
+
+            try
+            {
+                cmd.Connection.Open();
+                int pocet = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                if (cmd.Connection.State != ConnectionState.Closed) cmd.Connection.Close();
+                MessageBox.Show(ex.Message);
+            }
+            NaplnDb();
+        }
+
+
+       
+
+
+
+        private void FrmReceptura_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Button btn = (Button)sender;
+
+             
+
+                    if (MessageBox.Show("Chcete uložiť zmeny?", "Pozor",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2 ) == DialogResult.Yes)
+                e.Cancel = true;
         }
     }
 }

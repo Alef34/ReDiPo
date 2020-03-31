@@ -42,18 +42,22 @@
             this.Mnozstvo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btnVymaz = new System.Windows.Forms.ToolStripButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvJedla = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dgvJedla = new System.Windows.Forms.DataGridView();
+            this.dgvJedlaVsetky = new System.Windows.Forms.DataGridView();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedlaVsetky)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -93,9 +97,9 @@
             this.btnPridaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPridaj.Location = new System.Drawing.Point(388, 19);
             this.btnPridaj.Name = "btnPridaj";
-            this.btnPridaj.Size = new System.Drawing.Size(75, 28);
+            this.btnPridaj.Size = new System.Drawing.Size(68, 28);
             this.btnPridaj.TabIndex = 2;
-            this.btnPridaj.Text = "Pridaj";
+            this.btnPridaj.Text = "+";
             this.btnPridaj.UseVisualStyleBackColor = true;
             this.btnPridaj.Click += new System.EventHandler(this.BtnPridaj_Click);
             // 
@@ -147,6 +151,7 @@
             this.lstSuroviny.TabIndex = 1;
             this.lstSuroviny.UseCompatibleStateImageBehavior = false;
             this.lstSuroviny.View = System.Windows.Forms.View.Details;
+            this.lstSuroviny.SelectedIndexChanged += new System.EventHandler(this.LstSuroviny_SelectedIndexChanged);
             // 
             // Id
             // 
@@ -164,7 +169,8 @@
             // 
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.btnVymaz});
             this.toolStrip2.Location = new System.Drawing.Point(3, 16);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(469, 39);
@@ -180,23 +186,24 @@
             this.toolStripButton2.Size = new System.Drawing.Size(36, 36);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
+            // btnVymaz
+            // 
+            this.btnVymaz.Enabled = false;
+            this.btnVymaz.Image = ((System.Drawing.Image)(resources.GetObject("btnVymaz.Image")));
+            this.btnVymaz.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVymaz.Name = "btnVymaz";
+            this.btnVymaz.Size = new System.Drawing.Size(83, 36);
+            this.btnVymaz.Text = "Odober";
+            this.btnVymaz.Click += new System.EventHandler(this.ToolStripButton3_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.splitContainer1);
             this.groupBox3.Location = new System.Drawing.Point(493, 42);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(524, 393);
+            this.groupBox3.Size = new System.Drawing.Size(494, 393);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
-            // 
-            // dgvJedla
-            // 
-            this.dgvJedla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJedla.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvJedla.Location = new System.Drawing.Point(0, 0);
-            this.dgvJedla.Name = "dgvJedla";
-            this.dgvJedla.Size = new System.Drawing.Size(518, 169);
-            this.dgvJedla.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -208,9 +215,39 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dgvJedla);
-            this.splitContainer1.Size = new System.Drawing.Size(518, 374);
-            this.splitContainer1.SplitterDistance = 169;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgvJedlaVsetky);
+            this.splitContainer1.Size = new System.Drawing.Size(488, 374);
+            this.splitContainer1.SplitterDistance = 168;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // dgvJedla
+            // 
+            this.dgvJedla.AllowUserToAddRows = false;
+            this.dgvJedla.AllowUserToDeleteRows = false;
+            this.dgvJedla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJedla.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvJedla.Location = new System.Drawing.Point(0, 0);
+            this.dgvJedla.Name = "dgvJedla";
+            this.dgvJedla.ReadOnly = true;
+            this.dgvJedla.Size = new System.Drawing.Size(488, 168);
+            this.dgvJedla.TabIndex = 0;
+            this.dgvJedla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvJedla_CellContentClick);
+            this.dgvJedla.DoubleClick += new System.EventHandler(this.DgvJedla_DoubleClick);
+            // 
+            // dgvJedlaVsetky
+            // 
+            this.dgvJedlaVsetky.AllowUserToAddRows = false;
+            this.dgvJedlaVsetky.AllowUserToDeleteRows = false;
+            this.dgvJedlaVsetky.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJedlaVsetky.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvJedlaVsetky.Location = new System.Drawing.Point(0, 0);
+            this.dgvJedlaVsetky.Name = "dgvJedlaVsetky";
+            this.dgvJedlaVsetky.ReadOnly = true;
+            this.dgvJedlaVsetky.Size = new System.Drawing.Size(488, 202);
+            this.dgvJedlaVsetky.TabIndex = 0;
             // 
             // frmChladnicka
             // 
@@ -233,10 +270,12 @@
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedlaVsetky)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +299,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dgvJedla;
+        private System.Windows.Forms.ToolStripButton btnVymaz;
+        private System.Windows.Forms.DataGridView dgvJedlaVsetky;
     }
 }
