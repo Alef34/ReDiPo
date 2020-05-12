@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace AppRedipo
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
 
         DataSet DS = new DataSet();
@@ -21,14 +21,14 @@ namespace AppRedipo
         string retSql = "";
 
 
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            UkonciProgram();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,20 +45,21 @@ namespace AppRedipo
                          dbo.RECEPTURY ON dbo.SUROVINY.IdS = dbo.RECEPTURY.IdSFK RIGHT OUTER JOIN
                          dbo.JEDLA ON dbo.RECEPTURY.IdJFK = dbo.JEDLA.IdJ";
 
-            retSql = "Select * from Jedla";
+           // retSql = "Select * from Jedla";
             cmd = new SqlCommand(retSql, conn);
             cmd.CommandType = CommandType.Text;
             DA.SelectCommand = cmd;
             if (DS.Tables["Jedla"] != null) DS.Tables["Jedla"].Clear();
             DA.Fill(DS, "Jedla");
 
-            dataGridView1.DataSource = DS.Tables["Jedla"];
+           // dataGridView1.DataSource = DS.Tables["Jedla"];
         }
 
         private void TxtFilterS_TextChanged(object sender, EventArgs e)
         {
             DataView dv = DS.Tables["Jedla"].DefaultView;
             dv.RowFilter = "Surovina like '%" + txtFilterS.Text + "%' ";
+            txtFilterCount.Text = dv.Count.ToString();
         }
 
         private void ToolStripButton2_Click(object sender, EventArgs e)
@@ -99,6 +100,62 @@ namespace AppRedipo
             frmJed.ShowDialog();
             frmJed.Dispose();
 
+        }
+
+        private void ChladnickaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChladnicka frmChlad = new frmChladnicka();
+            frmChlad.StartPosition = FormStartPosition.CenterScreen;
+            frmChlad.ShowDialog();
+            frmChlad.Dispose();
+        }
+
+        private void KoniecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ToolStripButton1_Click(sender, e);
+            UkonciProgram();
+        }
+
+        private void UkonciProgram()
+        {
+           this.Close();
+        }
+
+        private void JedlaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmJedla frmJed = new frmJedla();
+            frmJed.StartPosition = FormStartPosition.CenterScreen;
+            frmJed.ShowDialog();
+            frmJed.Dispose();
+        }
+
+        private void KategorieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmKategorie frmKateg = new frmKategorie();
+            frmKateg.StartPosition = FormStartPosition.CenterScreen;
+            frmKateg.ShowDialog();
+            frmKateg.Dispose();
+        }
+
+        private void SurovinyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSuroviny frmSurov = new frmSuroviny();
+            frmSurov.StartPosition = FormStartPosition.CenterScreen;
+            frmSurov.ShowDialog();
+            frmSurov.Dispose();
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void PictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            frmSuroviny frmSurov = new frmSuroviny();
+            frmSurov.StartPosition = FormStartPosition.CenterScreen;
+            frmSurov.ShowDialog();
+            frmSurov.Dispose();
         }
     }
 }
