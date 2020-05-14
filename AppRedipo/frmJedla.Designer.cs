@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmJedla));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvJedla = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnZatvor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -42,36 +42,36 @@
             this.btnVymaz = new System.Windows.Forms.ToolStripButton();
             this.btnReceptura = new System.Windows.Forms.ToolStripButton();
             this.tlsEdit = new System.Windows.Forms.ToolStrip();
+            this.btnClose = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.lblIdJ = new System.Windows.Forms.ToolStripLabel();
             this.txtJedlo = new System.Windows.Forms.ToolStripTextBox();
             this.lblIdKFk = new System.Windows.Forms.ToolStripLabel();
             this.cboKategoria = new System.Windows.Forms.ToolStripComboBox();
-            this.btnClose = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.tlsEdit.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvJedla
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 39);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1195, 411);
-            this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
-            this.dataGridView1.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.DataGridView1_DefaultValuesNeeded);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
-            this.dataGridView1.DoubleClick += new System.EventHandler(this.DataGridView1_DoubleClick);
-            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridView1_MouseClick);
+            this.dgvJedla.AllowUserToAddRows = false;
+            this.dgvJedla.AllowUserToDeleteRows = false;
+            this.dgvJedla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJedla.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvJedla.Location = new System.Drawing.Point(0, 39);
+            this.dgvJedla.MultiSelect = false;
+            this.dgvJedla.Name = "dgvJedla";
+            this.dgvJedla.ReadOnly = true;
+            this.dgvJedla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvJedla.Size = new System.Drawing.Size(1195, 411);
+            this.dgvJedla.TabIndex = 3;
+            this.dgvJedla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
+            this.dgvJedla.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.DataGridView1_DefaultValuesNeeded);
+            this.dgvJedla.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
+            this.dgvJedla.DoubleClick += new System.EventHandler(this.DataGridView1_DoubleClick);
+            this.dgvJedla.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridView1_MouseClick);
             // 
             // toolStrip1
             // 
@@ -135,6 +135,7 @@
             this.cboKategorie.Name = "cboKategorie";
             this.cboKategorie.Size = new System.Drawing.Size(121, 39);
             this.cboKategorie.SelectedIndexChanged += new System.EventHandler(this.CboKategorie_SelectedIndexChanged);
+            this.cboKategorie.Click += new System.EventHandler(this.CboKategorie_Click);
             this.cboKategorie.TextChanged += new System.EventHandler(this.CboKategorie_TextChanged);
             // 
             // toolStripButton1
@@ -183,9 +184,23 @@
             this.btnSave});
             this.tlsEdit.Location = new System.Drawing.Point(387, 188);
             this.tlsEdit.Name = "tlsEdit";
-            this.tlsEdit.Size = new System.Drawing.Size(474, 39);
+            this.tlsEdit.Size = new System.Drawing.Size(622, 39);
             this.tlsEdit.TabIndex = 4;
             this.tlsEdit.Text = "toolStrip2";
+            // 
+            // btnClose
+            // 
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(77, 36);
+            this.btnClose.Text = "Zatvor";
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
             // 
             // lblIdJ
             // 
@@ -195,10 +210,11 @@
             // 
             // txtJedlo
             // 
+            this.txtJedlo.AutoSize = false;
             this.txtJedlo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtJedlo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtJedlo.Name = "txtJedlo";
-            this.txtJedlo.Size = new System.Drawing.Size(100, 39);
+            this.txtJedlo.Size = new System.Drawing.Size(200, 39);
             // 
             // lblIdKFk
             // 
@@ -210,19 +226,12 @@
             // 
             this.cboKategoria.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboKategoria.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboKategoria.AutoSize = false;
             this.cboKategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKategoria.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cboKategoria.Name = "cboKategoria";
-            this.cboKategoria.Size = new System.Drawing.Size(121, 39);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(77, 36);
-            this.btnClose.Text = "Zatvor";
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.cboKategoria.Size = new System.Drawing.Size(200, 39);
+            this.cboKategoria.SelectedIndexChanged += new System.EventHandler(this.CboKategoria_SelectedIndexChanged);
             // 
             // btnSave
             // 
@@ -231,11 +240,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(66, 36);
             this.btnSave.Text = "Ulož";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // frmJedla
             // 
@@ -243,12 +248,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 450);
             this.Controls.Add(this.tlsEdit);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvJedla);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmJedla";
             this.Text = "frmJedla";
             this.Load += new System.EventHandler(this.FrmJedla_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJedla)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tlsEdit.ResumeLayout(false);
@@ -260,7 +265,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvJedla;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnZatvor;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
